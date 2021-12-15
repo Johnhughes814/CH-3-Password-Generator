@@ -170,17 +170,18 @@ function generatePassword() {
 
   console.log(results);
   for (let i = 0; i < guaranteedCharacters.length; i++) {
-  result.push(guaranteedCharacters[i])
+    result.push(guaranteedCharacters[i]);
   }
-  var charactersLeftToAdd = results.length-guaranteedCharacters.length
-  console.log (charactersLeftToAdd)
-  // Make a for loop from 0 to charactersLeftToAdd
-  // Inside for loop you're going to select a random element from possible characters
-  // Push that random element into the result array
-  // Change result array into a string
-  // Use the join method
-  // Return the string result
-  return result;
+  //Keep in mind that charactersLeftToAdd is NUMBER, not an ARRAY
+  var charactersLeftToAdd = results.length - guaranteedCharacters.length;
+  console.log(charactersLeftToAdd);
+
+  for (var i = 0; i < charactersLeftToAdd; i++) {
+    var possibleCharacter = getRandom(possibleCharacters);
+    console.log(possibleCharacter);
+    result.push(possibleCharacter);
+  }
+  return result.join("");
 }
 
 function getRandom(arr) {
@@ -188,4 +189,12 @@ function getRandom(arr) {
   var randElement = arr[randIndex];
 
   return randElement;
+}
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
 }
